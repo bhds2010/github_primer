@@ -39,7 +39,7 @@ gitcreds::gitcreds_set() #if you need to setup the key
 
 ## Managing Secrets
 
-The next sections show how to manage secrets at least in a semi-decent way. When setting gitcreds you might have to provide the token as plain text which is what i often do but also it will be good to simply get the secret from `Rprofile` or `Renviron` files and so the next sections break down ways to save secrets in R. Now after 
+The next sections show how to manage secrets at least in a semi-decent way. When setting gitcreds you might have to provide the token as plain text which is what i often do but also it will be good to simply get the secret from `Rprofile` or `Renviron` files and so the next sections break down ways to save secrets in R.
 
 ## Rprofile
 
