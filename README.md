@@ -18,6 +18,14 @@ I advise these steps:
 
 6. Choose sub directory
 
+## Check git housekeeping
+
+Safe to see you can proceed if a git version is returned from the system call below.
+
+```r
+system("git --version")
+```
+
 ## Using Rstudio for Git and Github configuration
 
 With git installed. You need to set up credentials below otherwise it will throw an error.
@@ -28,6 +36,10 @@ For project collaborators there might be no need to set the token but if asked t
 use_git_config(user.name = "****", user.email = "*****")
 gitcreds::gitcreds_set() #if you need to setup the key
 ```
+
+## Managing Secrets
+
+The next sections show how to manage secrets at least in a semi-decent way. When setting gitcreds you might have to provide the token as plain text which is what i often do but also it will be good to simply get the secret from `Rprofile` or `Renviron` files and so the next sections break down ways to save secrets in R. Now after 
 
 ## Rprofile
 
@@ -94,4 +106,7 @@ github_primer_key <- Sys.getenv('BHDS2010_GITHUB_PRIMER_REPO_TOKEN')
 
 ## Reference
 
+[Git Creds](https://gitcreds.r-lib.org/reference/gitcreds_get.html)
 [Git and Github Config Rstudio](https://github.com/AlphaPrime7/git_config_linux/blob/master/gitR.Rmd)
+
+
