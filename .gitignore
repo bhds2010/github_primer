@@ -4,4 +4,4 @@
 .Ruserdata
 .Renviron
 .Rprofile
-
+writeEnv.R

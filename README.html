@@ -372,7 +372,14 @@ course.</p>
 </div>
 <div id="using-rstudio-for-git-and-github-configuration" class="section level2">
 <h2>Using Rstudio for Git and Github configuration</h2>
-<p><code>{r} use_git_config(user.name = &quot;****&quot;, user.email = &quot;*****&quot;) gitcreds::gitcreds_set() #if you need to setup the key</code></p>
+<p>With git installed. You need to set up credentials below otherwise it
+will throw an error.</p>
+<p>For project collaborators there might be no need to set the token but
+if asked then use <code>gitcreds::gitcreds_set()</code> and provide the
+token when prompted. Please reach out to me for the token or perhaps
+attempt to set one up yourself.</p>
+<pre class="r"><code>use_git_config(user.name = &quot;****&quot;, user.email = &quot;*****&quot;)
+gitcreds::gitcreds_set() #if you need to setup the key</code></pre>
 </div>
 <div id="rprofile" class="section level2">
 <h2>Rprofile</h2>
@@ -418,7 +425,7 @@ file.edit(&quot;.Renviron&quot;) #edit Rprofile project</code></pre>
 <h2>Setting environment variable</h2>
 <div id="add-secret" class="section level3">
 <h3>Add secret</h3>
-<pre class="r"><code>Sys.setenv(BHDS2010_GITHUB_PRIMER_REPO_TOKEN = &quot;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&quot;)
+<pre class="r"><code>Sys.setenv(BHDS2010_GITHUB_PRIMER_REPO_TOKEN = &quot;*****&quot;)
 Sys.unsetenv(&quot;BHDS2010_GITHUB_PRIMER_REPO_TOKEN&quot;)</code></pre>
 </div>
 <div id="retrieve-secrets" class="section level3">

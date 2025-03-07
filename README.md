@@ -1,4 +1,5 @@
 ## github_primer
+
 Repo is for the bhds 2010 module 9 homework and is the precursor to what will be referenced for the group project due at the end of the course.
 
 ## Getting Started here
@@ -19,7 +20,11 @@ I advise these steps:
 
 ## Using Rstudio for Git and Github configuration
 
-```{r}
+With git installed. You need to set up credentials below otherwise it will throw an error.
+
+For project collaborators there might be no need to set the token but if asked then use `gitcreds::gitcreds_set()` and provide the token when prompted. Please reach out to me for the token or perhaps attempt to set one up yourself.
+
+```r
 use_git_config(user.name = "****", user.email = "*****")
 gitcreds::gitcreds_set() #if you need to setup the key
 ```
