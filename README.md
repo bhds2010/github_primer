@@ -1,2 +1,92 @@
-# github_primer
+## github_primer
 Repo is for the bhds 2010 module 9 homework and is the precursor to what will be referenced for the group project due at the end of the course.
+
+## Getting Started here
+
+I advise these steps:
+
+1. Open Rstudio (Top Right Side)
+
+2. New Project > New Project Wizard
+
+3. Version Control > Git
+
+4. Enter Repo URL
+
+5. Can ignore project directory name
+
+6. Choose sub directory
+
+## Using Rstudio for Git and Github configuration
+
+```{r}
+use_git_config(user.name = "****", user.email = "*****")
+gitcreds::gitcreds_set() #if you need to setup the key
+```
+
+## Rprofile
+
+Working with Rprofile
+
+### Check if it exists
+
+```r
+site_path = R.home(component = "home")
+fname = file.path(site_path, "etc", "Rprofile.site")
+file.exists(fname)
+```
+### Make and edit the file
+
+```r
+Sys.getenv("HOME")
+user_rprofile = path.expand(file.path("~", ".Rprofile")) #edit Rprofile global
+file.edit(user_rprofile)
+file.edit("~/.Rprofile") #edit Rprofile global
+file.edit(".Rprofile") #edit Rprofile project
+```
+
+## Renviron
+
+Working with Renviron
+
+### Check if it exists
+
+```r
+site_path = R.home(component = "home")
+fname = file.path(site_path, "etc", "Renviron.site")
+file.exists(fname)
+```
+### Make and edit the file
+
+```r
+Sys.getenv("HOME")
+user_renviron = path.expand(file.path("~", ".Renviron")) #edit Rprofile global
+file.edit(user_renviron)
+file.edit("~/.Renviron") #edit Rprofile global
+file.edit(".Renviron") #edit Rprofile project
+```
+
+### Also usethis
+
+```r
+usethis::edit_r_environ()
+```
+
+## Setting environment variable
+
+### Add secret
+
+```r
+Sys.setenv(BHDS2010_GITHUB_PRIMER_REPO_TOKEN = "*****")
+Sys.unsetenv("BHDS2010_GITHUB_PRIMER_REPO_TOKEN")
+```
+
+### Retrieve secrets
+
+```r
+github_primer_key <- Sys.getenv('BHDS2010_GITHUB_PRIMER_REPO_TOKEN')
+```
+
+## Reference
+
+[Git and Github Config Rstudio](https://github.com/AlphaPrime7/git_config_linux/blob/master/gitR.Rmd)
