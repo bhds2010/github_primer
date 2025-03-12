@@ -370,6 +370,12 @@ course.</p>
 <li><p>Choose sub directory</p></li>
 </ol>
 </div>
+<div id="check-git-housekeeping" class="section level2">
+<h2>Check git housekeeping</h2>
+<p>Safe to see you can proceed if a git version is returned from the
+system call below.</p>
+<pre class="r"><code>system(&quot;git --version&quot;)</code></pre>
+</div>
 <div id="using-rstudio-for-git-and-github-configuration" class="section level2">
 <h2>Using Rstudio for Git and Github configuration</h2>
 <p>With git installed. You need to set up credentials below otherwise it
@@ -380,6 +386,15 @@ token when prompted. Please reach out to me for the token or perhaps
 attempt to set one up yourself.</p>
 <pre class="r"><code>use_git_config(user.name = &quot;****&quot;, user.email = &quot;*****&quot;)
 gitcreds::gitcreds_set() #if you need to setup the key</code></pre>
+</div>
+<div id="managing-secrets" class="section level2">
+<h2>Managing Secrets</h2>
+<p>The next sections show how to manage secrets at least in a
+semi-decent way. When setting gitcreds you might have to provide the
+token as plain text which is what i often do but also it will be good to
+simply get the secret from <code>Rprofile</code> or
+<code>Renviron</code> files and so the next sections break down ways to
+save secrets in R.</p>
 </div>
 <div id="rprofile" class="section level2">
 <h2>Rprofile</h2>
@@ -433,9 +448,27 @@ Sys.unsetenv(&quot;BHDS2010_GITHUB_PRIMER_REPO_TOKEN&quot;)</code></pre>
 <pre class="r"><code>github_primer_key &lt;- Sys.getenv(&#39;BHDS2010_GITHUB_PRIMER_REPO_TOKEN&#39;)</code></pre>
 </div>
 </div>
+<div id="fixing-push-issues" class="section level2">
+<h2>Fixing Push Issues</h2>
+<p>This is a <code>terminal</code> command, not a <code>console</code>
+command.</p>
+<pre class="bash"><code>git add .
+git commit .
+git push -f</code></pre>
+</div>
+<div id="fixing-vim-terminal-issues" class="section level2">
+<h2>Fixing VIM Terminal issues</h2>
+<p>Some instances when the terminal is busy like when one attempts to
+use terminal for commiting in windows but VIM commands don’t work well
+on windows and to stop git from tracking error processes, the
+<code>index.lock</code> file needs to be removed in order to give git a
+black slate.</p>
+<pre class="bash"><code>rm -f .git/index.lock</code></pre>
+</div>
 <div id="reference" class="section level2">
 <h2>Reference</h2>
-<p><a href="https://github.com/AlphaPrime7/git_config_linux/blob/master/gitR.Rmd">Git
+<p><a href="https://gitcreds.r-lib.org/reference/gitcreds_get.html">Git
+Creds</a> <a href="https://github.com/AlphaPrime7/git_config_linux/blob/master/gitR.Rmd">Git
 and Github Config Rstudio</a></p>
 </div>
 
