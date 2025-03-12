@@ -124,6 +124,7 @@ rm -f .git/index.lock
 ## Reference
 
 [Git Creds](https://gitcreds.r-lib.org/reference/gitcreds_get.html)
+
 [Git and Github Config Rstudio](https://github.com/AlphaPrime7/git_config_linux/blob/master/gitR.Rmd)
 
 
