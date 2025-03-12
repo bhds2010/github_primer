@@ -110,6 +110,7 @@ This is a `terminal` command, not a `console` command.
 
 ```bash
 git add .
+git commit .
 git push -f
 ```
 
