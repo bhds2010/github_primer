@@ -104,7 +104,7 @@ Sys.unsetenv("BHDS2010_GITHUB_PRIMER_REPO_TOKEN")
 github_primer_key <- Sys.getenv('BHDS2010_GITHUB_PRIMER_REPO_TOKEN')
 ```
 
-### Fixing Push Issues
+## Fixing Push Issues
 
 This is a `terminal` command, not a `console` command.
 
@@ -112,6 +112,14 @@ This is a `terminal` command, not a `console` command.
 git add .
 git commit .
 git push -f
+```
+
+## Fixing VIM Terminal issues
+
+Some instances when the terminal is busy like when one attempts to use terminal for commiting in windows but VIM commands don't work well on windows and to stop git from tracking error processes, the `index.lock` file needs to be removed in order to give git a black slate.
+
+```bash
+rm -f .git/index.lock
 ```
 ## Reference
 
