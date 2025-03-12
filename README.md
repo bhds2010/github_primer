@@ -104,9 +104,14 @@ Sys.unsetenv("BHDS2010_GITHUB_PRIMER_REPO_TOKEN")
 github_primer_key <- Sys.getenv('BHDS2010_GITHUB_PRIMER_REPO_TOKEN')
 ```
 
-### Kaity's first commit and push
+### Fixing Push Issues
 
-Here is a Kaity simulation of a commit and push.
+This is a `terminal` command, not a `console` command.
+
+```bash
+git add .
+git push -f
+```
 
 ## Reference
 
