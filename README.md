@@ -113,7 +113,6 @@ git add .
 git commit .
 git push -f
 ```
-
 ## Reference
 
 [Git Creds](https://gitcreds.r-lib.org/reference/gitcreds_get.html)
