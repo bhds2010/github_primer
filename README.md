@@ -33,7 +33,8 @@ With git installed. You need to set up credentials below otherwise it will throw
 For project collaborators there might be no need to set the token but if asked then use `gitcreds::gitcreds_set()` and provide the token when prompted. Please reach out to me for the token or perhaps attempt to set one up yourself.
 
 ```r
-use_git_config(user.name = "****", user.email = "*****")
+library(usethis)
+usethis::use_git_config(user.name = "****", user.email = "*****")
 gitcreds::gitcreds_set() #if you need to setup the key
 ```
 
@@ -122,11 +123,10 @@ Some instances when the terminal is busy like when one attempts to use terminal 
 rm -f .git/index.lock
 ```
 
-## Deletting a branch
-
 ```bash
 git branch -d <brachname>
 ```
+
 ## Reference
 
 [Git Creds](https://gitcreds.r-lib.org/reference/gitcreds_get.html)
