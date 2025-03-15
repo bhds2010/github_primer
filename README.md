@@ -123,6 +123,10 @@ Some instances when the terminal is busy like when one attempts to use terminal 
 rm -f .git/index.lock
 ```
 
+```bash
+git branch -d <brachname>
+```
+
 ## Reference
 
 [Git Creds](https://gitcreds.r-lib.org/reference/gitcreds_get.html)
