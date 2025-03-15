@@ -1,0 +1,28 @@
+---
+title: "Github Collaboration"
+author: Tingwei Adeck, Kaity Trinidad, Noor Aayla
+date: '`r format(Sys.time(), "%B %d, %Y")`'
+output:
+  pdf_document:
+    latex_engine: xelatex
+  html_document:
+    df_print: paged
+  html_notebook: default
+  word_document: default
+header-includes:
+  - \usepackage{geometry} 
+  - \geometry{top=0.5in}
+  - \usepackage{float}
+  - \usepackage{titlesec}
+  - \usepackage{amsmath}
+  - \usepackage{amssymb}
+---
+
+## Github Collaboration
+
+## Viz One
+
+```{r Viz One, warning=FALSE, message=FALSE}
+
+```
+
