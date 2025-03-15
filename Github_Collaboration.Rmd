@@ -23,6 +23,14 @@ header-includes:
 ## Viz One
 
 ```{r Viz One, warning=FALSE, message=FALSE}
+library(dplyr)
+dplyr::across()
+```
 
+## Documentation
+
+```{r}
+library(usethis)
+usethis::git_branch_default()
 ```
 
