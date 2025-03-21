@@ -30,7 +30,19 @@ longtext<-gather(text,Time,Count,Baseline:Six_months, factor_key = TRUE )
 
 longtext %>% ggplot(aes(x = Count))+geom_histogram(aes(color=Time,
 fill=Time),position="identity",
- bins=10,alpha = 0.4) + scale_color_manual(values = c("skyblue",
-    "red")) + scale_fill_manual(values = c("skyblue", "red")) +
+ bins=10,alpha = 0.4) + scale_color_manual(values = c("blue",
+    "red")) + scale_fill_manual(values = c("blue", "red")) +
   labs(title="Total Number of Text Messages: Baseline vs.6 Months By Group ",
        x=" Text Messages", y = "Frequency") + facet_grid(Group~.) 
+
+#Faceted bar plot of time points by group, first obtain min and max by group
+by(longtext$Count, longtext$Group, function(X) round(stat.desc(X), 2))
+
+longtext %>% ggplot(aes(Time, Count)) + stat_summary(fun.y = mean, geom = "bar",
+fill ="red",colour = "blue") + stat_summary(fun.data = mean_cl_normal, geom =
+"pointrange", colour = "blue") + labs(x = "Time point",y = " Text Messages")+ 
+scale_y_continuous(limits = c(0, 90), breaks= seq(from =0, to = 90,
+by = 10))+ labs(title="Text Message Count Error Bar Plot by Time and Group",
+x="Time point", y = "Text Messsage Count")+ theme_classic()+ facet_grid(Group~.) 
+
+
