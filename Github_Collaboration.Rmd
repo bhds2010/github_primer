@@ -114,18 +114,6 @@ TextMessages_long <- TextMessages %>%
                names_to = "Timepoint", 
                values_to = "Value")
 
-#make facet
-barp <- ggplot(TextMessages_long, 
-               aes(x = Group_factor, 
-                   y = Value, 
-                   fill = Group_factor)) +
-  geom_bar(stat = "identity", position = "dodge") +
-  facet_grid(. ~ Timepoint, scales = "free") +
-  labs(x = "Group Factor", y = "Value", 
-       title = "Comparison of Baseline and Six Months Values")
-
-print(barp)
-```
 
 # References
 [ggplot2 facet : split a plot into a matrix of panels ](https://www.sthda.com/english/wiki/ggplot2-facet-split-a-plot-into-a-matrix-of-panels)
