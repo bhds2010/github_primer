@@ -1,0 +1,107 @@
+---
+title: "Github Collaboration"
+author: Tingwei Adeck, Kaity Trinidad, Noor Aayla
+date: '`r format(Sys.time(), "%B %d, %Y")`'
+output:
+  pdf_document:
+    latex_engine: xelatex
+  html_document:
+    df_print: paged
+  html_notebook: default
+  word_document: default
+header-includes:
+  - \usepackage{geometry} 
+  - \geometry{top=0.5in}
+  - \usepackage{float}
+  - \usepackage{titlesec}
+  - \usepackage{amsmath}
+  - \usepackage{amssymb}
+---
+
+```{r echo=FALSE, warning=FALSE, message=FALSE}
+#housework
+library(utils)
+library(pastecs)
+library(readxl)
+#tidyverse
+library(dplyr)
+library(tidyr)
+library(broom)
+library(janitor)
+#plotting
+library(rlang)
+library(ggplot2)
+library(RColorBrewer)
+library(ggnormfluodbf)
+#stats
+library(stats) #shapiro
+library(dgof) #kolmogorov
+library(car) #levene's
+#markdown
+library(knitr)
+library(kableExtra)
+```
+
+# Import Data
+
+```{r import txtmsg data, warning=FALSE, message=FALSE}
+library(readr)
+TextMessages <- read_csv("TextMessages.csv")
+#View(TextMessages)
+head(TextMessages)
+```
+
+# Factorization (Data Wrangling)
+
+```{r factorize, message=FALSE, warning=FALSE}
+#factor a variable en place - risky
+make_factor <- function(data, var){
+  refactored <- as.factor(data[[var]]) #make factor
+  data[[var]] <- refactored #assign factor back to var
+  data #return
+}
+
+#factor with labels scalably
+#!!! to unpack the vectors and setnames to map values to labels
+make_factor_scale <- function(data, var, newvarName, fact_num_vect, 
+                                    fact_char_vect) {
+  data[[newvarName]] <- dplyr::recode(data[[var]], 
+                                      !!!setNames(fact_char_vect,
+                                                  fact_num_vect)) 
+  data
+}
+
+#check the groups
+unique(TextMessages$Group)
+TextMessages <- make_factor_scale(TextMessages, 
+                                       "Group", 
+                                       "Group_factor", c(1,2), 
+                                       c("Group 1", 
+                                         "Group 2"))
+TextMessages <- TextMessages %>% 
+  dplyr::relocate("Group_factor", .after = "Group")
+```
+
+# Summary Table Setup
+
+```{r}
+Value <- stat.desc(essaymarks$essay) 
+em_summ_df <- as.data.frame(Value)
+row_names <- rownames(em_summ_df)
+
+em_summ_df <- em_summ_df %>%
+  tibble::rownames_to_column(var = "Statistic")
+
+# Pivot to wide format
+wide_data <- em_summ_df %>%
+  pivot_wider(names_from = "Statistic", values_from = colnames(em_summ_df)[2])
+```
+
+```{r}
+kable(em_summ_df, format = "latex", 
+      caption = "Statistical Summary Long Table for Essay Marks", 
+      table.envir = "table", align = "c")
+```
+
+# References
+[ggplot2 facet : split a plot into a matrix of panels ](https://www.sthda.com/english/wiki/ggplot2-facet-split-a-plot-into-a-matrix-of-panels)
