@@ -6,6 +6,7 @@ text <-read.csv("TextMessages.csv", header=TRUE)
 
 #Libraries used 
 library(tidyr)
+library(pastecs)
 library(ggplot2)
 library(dplyr)
 library(Hmisc)
