@@ -3,11 +3,11 @@ title: "Github Collaboration"
 author: Tingwei Adeck, Kaity Trinidad, Noor Aayla
 date: '`r format(Sys.time(), "%B %d, %Y")`'
 output:
-  pdf_document:
-    latex_engine: xelatex
+  html_notebook: default
   html_document:
     df_print: paged
-  html_notebook: default
+  pdf_document:
+    latex_engine: xelatex
   word_document: default
 header-includes:
   - \usepackage{geometry} 
@@ -46,9 +46,15 @@ library(kableExtra)
 
 ```{r import txtmsg data, warning=FALSE, message=FALSE}
 library(readr)
-TextMessages <- read_csv("TextMessages.csv")
+TextMessages <- read_csv("TextMessages.csv") #1-use read_csv (parent df)
 #View(TextMessages)
-head(TextMessages)
+#head(TextMessages)
+```
+
+```{r preview table}
+kable(head(TextMessages,5), format = "markdown", #
+      caption = "Text Message Data Preview", 
+      table.envir = "table", align = "c")
 ```
 
 # Factorization (Data Wrangling)
