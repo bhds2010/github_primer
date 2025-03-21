@@ -82,29 +82,5 @@ TextMessages <- TextMessages %>%
   dplyr::relocate("Group_factor", .after = "Group")
 ```
 
-# Visualization One
-
-***Creates stratified boxplot of text messages by Group and Time (Hint: Faceted Boxplot)?***
-
-```{r facet box plot, message=FALSE, warning=FALSE, fig.width=8, fig.height=6, fig.align='center'}
-#pivot data
-TextMessages_long <- TextMessages %>%
-  pivot_longer(cols = c(Baseline, Six_months), 
-               names_to = "Timepoint", 
-               values_to = "Value")
-
-#make facet
-boxp <- ggplot(TextMessages_long, 
-             aes(x = Group_factor, 
-                 y = Value, 
-                 fill = Group_factor)) +
-  geom_boxplot() +
-  facet_grid(. ~ Timepoint, scales = "free") +
-  labs(x = "Group Factor", y = "Value", 
-       title = "Comparison of Baseline and Six Months Values")
-
-print(boxp)
-```
-
 # References
 [ggplot2 facet : split a plot into a matrix of panels ](https://www.sthda.com/english/wiki/ggplot2-facet-split-a-plot-into-a-matrix-of-panels)
