@@ -11,7 +11,7 @@
 
 <meta name="author" content="Tingwei Adeck, Kaity Trinidad, Noor Aayla" />
 
-<meta name="date" content="2025-03-14" />
+<meta name="date" content="2025-03-21" />
 
 <title>Github Collaboration</title>
 
@@ -1750,25 +1750,67 @@ display: none;
 
 <h1 class="title toc-ignore">Github Collaboration</h1>
 <h4 class="author">Tingwei Adeck, Kaity Trinidad, Noor Aayla</h4>
-<h4 class="date">March 14, 2025</h4>
+<h4 class="date">March 21, 2025</h4>
 
 </div>
 
 
 <!-- rnb-text-begin -->
-<div id="github-collaboration" class="section level2">
-<h2>Github Collaboration</h2>
-</div>
-<div id="viz-one" class="section level2">
-<h2>Viz One</h2>
+<div id="prepare-data" class="section level1">
+<h1>prepare data</h1>
 <!-- rnb-text-end -->
 <!-- rnb-chunk-begin -->
+<!-- rnb-output-begin eyJkYXRhIjoiXG48IS0tIHJuYi1zb3VyY2UtYmVnaW4gZXlKa1lYUmhJam9pWUdCZ2NseHVJMGx0Y0c5eWRDQkVZWFJoWEc1VVpYaDBJRHd0Y21WaFpDNWpjM1lvWENKVVpYaDBUV1Z6YzJGblpYTXVZM04yWENJc0lHaGxZV1JsY2oxVVVsVkZLVnh1Ykc5dVozUmxlSFE4TFdkaGRHaGxjaWhVWlhoMExGUnBiV1VzUTI5MWJuUXNRbUZ6Wld4cGJtVTZVMmw0WDIxdmJuUm9jeXdnWm1GamRHOXlYMnRsZVNBOUlGUlNWVVVnS1Z4dVlHQmdJbjA9IC0tPlxuXG5gYGByXG4jSW1wb3J0IERhdGFcblRleHQgPC1yZWFkLmNzdihcIlRleHRNZXNzYWdlcy5jc3ZcIiwgaGVhZGVyPVRSVUUpXG5sb25ndGV4dDwtZ2F0aGVyKFRleHQsVGltZSxDb3VudCxCYXNlbGluZTpTaXhfbW9udGhzLCBmYWN0b3Jfa2V5ID0gVFJVRSApXG5gYGBcblxuPCEtLSBybmItc291cmNlLWVuZCAtLT5cbiJ9 -->
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuI0ltcG9ydCBEYXRhXG5UZXh0IDwtcmVhZC5jc3YoXCJUZXh0TWVzc2FnZXMuY3N2XCIsIGhlYWRlcj1UUlVFKVxubG9uZ3RleHQ8LWdhdGhlcihUZXh0LFRpbWUsQ291bnQsQmFzZWxpbmU6U2l4X21vbnRocywgZmFjdG9yX2tleSA9IFRSVUUgKVxuYGBgIn0= -->
+<pre class="r"><code>#Import Data
+Text &lt;-read.csv(&quot;TextMessages.csv&quot;, header=TRUE)
+longtext&lt;-gather(Text,Time,Count,Baseline:Six_months, factor_key = TRUE )</code></pre>
+<!-- rnb-source-end -->
+<!-- rnb-output-end -->
+<!-- rnb-chunk-end -->
+<!-- rnb-text-begin -->
+</div>
+<div id="visualization-two" class="section level1">
+<h1>Visualization Two</h1>
+<!-- rnb-text-end -->
+<!-- rnb-chunk-begin -->
+<!-- rnb-output-begin eyJkYXRhIjoiXG48IS0tIHJuYi1zb3VyY2UtYmVnaW4gZXlKa1lYUmhJam9pWUdCZ2NseHVZbUZ5Y0NBOExTQm5aM0JzYjNRb1ZHVjRkRTFsYzNOaFoyVnpYMnh2Ym1jc0lGeHVJQ0FnSUNBZ0lDQWdJQ0FnSUNBZ1lXVnpLSGdnUFNCSGNtOTFjRjltWVdOMGIzSXNJRnh1SUNBZ0lDQWdJQ0FnSUNBZ0lDQWdJQ0FnSUhrZ1BTQldZV3gxWlN3Z1hHNGdJQ0FnSUNBZ0lDQWdJQ0FnSUNBZ0lDQWdabWxzYkNBOUlFZHliM1Z3WDJaaFkzUnZjaWtwSUN0Y2JpQWdaMlZ2YlY5aVlYSW9jM1JoZENBOUlGd2lhV1JsYm5ScGRIbGNJaXdnY0c5emFYUnBiMjRnUFNCY0ltUnZaR2RsWENJcElDdGNiaUFnWm1GalpYUmZaM0pwWkNndUlINGdWR2x0WlhCdmFXNTBMQ0J6WTJGc1pYTWdQU0JjSW1aeVpXVmNJaWtnSzF4dUlDQnNZV0p6S0hnZ1BTQmNJa2R5YjNWd0lFWmhZM1J2Y2x3aUxDQjVJRDBnWENKV1lXeDFaVndpTENCY2JpQWdJQ0FnSUNCMGFYUnNaU0E5SUZ3aVEyOXRjR0Z5YVhOdmJpQnZaaUJDWVhObGJHbHVaU0JoYm1RZ1UybDRJRTF2Ym5Sb2N5QldZV3gxWlhOY0lpbGNibHh1Y0hKcGJuUW9ZbUZ5Y0NsY2JtQmdZQ0o5IC0tPlxuXG5gYGByXG5iYXJwIDwtIGdncGxvdChUZXh0TWVzc2FnZXNfbG9uZywgXG4gICAgICAgICAgICAgICBhZXMoeCA9IEdyb3VwX2ZhY3RvciwgXG4gICAgICAgICAgICAgICAgICAgeSA9IFZhbHVlLCBcbiAgICAgICAgICAgICAgICAgICBmaWxsID0gR3JvdXBfZmFjdG9yKSkgK1xuICBnZW9tX2JhcihzdGF0ID0gXCJpZGVudGl0eVwiLCBwb3NpdGlvbiA9IFwiZG9kZ2VcIikgK1xuICBmYWNldF9ncmlkKC4gfiBUaW1lcG9pbnQsIHNjYWxlcyA9IFwiZnJlZVwiKSArXG4gIGxhYnMoeCA9IFwiR3JvdXAgRmFjdG9yXCIsIHkgPSBcIlZhbHVlXCIsIFxuICAgICAgIHRpdGxlID0gXCJDb21wYXJpc29uIG9mIEJhc2VsaW5lIGFuZCBTaXggTW9udGhzIFZhbHVlc1wiKVxuXG5wcmludChiYXJwKVxuYGBgXG5cbjwhLS0gcm5iLXNvdXJjZS1lbmQgLS0+XG4ifQ== -->
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuYmFycCA8LSBnZ3Bsb3QoVGV4dE1lc3NhZ2VzX2xvbmcsIFxuICAgICAgICAgICAgICAgYWVzKHggPSBHcm91cF9mYWN0b3IsIFxuICAgICAgICAgICAgICAgICAgIHkgPSBWYWx1ZSwgXG4gICAgICAgICAgICAgICAgICAgZmlsbCA9IEdyb3VwX2ZhY3RvcikpICtcbiAgZ2VvbV9iYXIoc3RhdCA9IFwiaWRlbnRpdHlcIiwgcG9zaXRpb24gPSBcImRvZGdlXCIpICtcbiAgZmFjZXRfZ3JpZCguIH4gVGltZXBvaW50LCBzY2FsZXMgPSBcImZyZWVcIikgK1xuICBsYWJzKHggPSBcIkdyb3VwIEZhY3RvclwiLCB5ID0gXCJWYWx1ZVwiLCBcbiAgICAgICB0aXRsZSA9IFwiQ29tcGFyaXNvbiBvZiBCYXNlbGluZSBhbmQgU2l4IE1vbnRocyBWYWx1ZXNcIilcblxucHJpbnQoYmFycClcbmBgYCJ9 -->
+<pre class="r"><code>barp &lt;- ggplot(TextMessages_long, 
+               aes(x = Group_factor, 
+                   y = Value, 
+                   fill = Group_factor)) +
+  geom_bar(stat = &quot;identity&quot;, position = &quot;dodge&quot;) +
+  facet_grid(. ~ Timepoint, scales = &quot;free&quot;) +
+  labs(x = &quot;Group Factor&quot;, y = &quot;Value&quot;, 
+       title = &quot;Comparison of Baseline and Six Months Values&quot;)
+
+print(barp)</code></pre>
+<!-- rnb-source-end -->
+<!-- rnb-output-end -->
+<!-- rnb-chunk-end -->
+<!-- rnb-text-begin -->
+</div>
+<div id="kaitys-histogram" class="section level1">
+<h1>Kaity’s Histogram</h1>
+<!-- rnb-text-end -->
+<!-- rnb-chunk-begin -->
+<!-- rnb-output-begin eyJkYXRhIjoiXG48IS0tIHJuYi1zb3VyY2UtYmVnaW4gZXlKa1lYUmhJam9pWUdCZ2NseHViRzl1WjNSbGVIUWdKVDRsSUdkbmNHeHZkQ2hoWlhNb2VDQTlJRU52ZFc1MEtTa3JaMlZ2YlY5b2FYTjBiMmR5WVcwb1lXVnpLR052Ykc5eVBWUnBiV1VzWEc1bWFXeHNQVlJwYldVcExIQnZjMmwwYVc5dVBWd2lhV1JsYm5ScGRIbGNJaXhjYmlCaWFXNXpQVEV3TEdGc2NHaGhJRDBnTUM0MEtTQXJJSE5qWVd4bFgyTnZiRzl5WDIxaGJuVmhiQ2gyWVd4MVpYTWdQU0JqS0Z3aVlteDFaVndpTEZ4dUlDQWdJRndpY21Wa1hDSXBLU0FySUhOallXeGxYMlpwYkd4ZmJXRnVkV0ZzS0haaGJIVmxjeUE5SUdNb1hDSmliSFZsWENJc0lGd2ljbVZrWENJcEtTQXJYRzRnSUd4aFluTW9kR2wwYkdVOVhDSlViM1JoYkNCT2RXMWlaWElnYjJZZ1ZHVjRkQ0JOWlhOellXZGxjem9nUW1GelpXeHBibVVnZG5NdU5pQk5iMjUwYUhNZ1Fua2dSM0p2ZFhBZ1hDSXNYRzRnSUNBZ0lDQWdlRDFjSWlCVVpYaDBJRTFsYzNOaFoyVnpYQ0lzSUhrZ1BTQmNJa1p5WlhGMVpXNWplVndpS1NBcklHWmhZMlYwWDJkeWFXUW9SM0p2ZFhCK0xpa2dYRzVnWUdBaWZRPT0gLS0+XG5cbmBgYHJcbmxvbmd0ZXh0ICU+JSBnZ3Bsb3QoYWVzKHggPSBDb3VudCkpK2dlb21faGlzdG9ncmFtKGFlcyhjb2xvcj1UaW1lLFxuZmlsbD1UaW1lKSxwb3NpdGlvbj1cImlkZW50aXR5XCIsXG4gYmlucz0xMCxhbHBoYSA9IDAuNCkgKyBzY2FsZV9jb2xvcl9tYW51YWwodmFsdWVzID0gYyhcImJsdWVcIixcbiAgICBcInJlZFwiKSkgKyBzY2FsZV9maWxsX21hbnVhbCh2YWx1ZXMgPSBjKFwiYmx1ZVwiLCBcInJlZFwiKSkgK1xuICBsYWJzKHRpdGxlPVwiVG90YWwgTnVtYmVyIG9mIFRleHQgTWVzc2FnZXM6IEJhc2VsaW5lIHZzLjYgTW9udGhzIEJ5IEdyb3VwIFwiLFxuICAgICAgIHg9XCIgVGV4dCBNZXNzYWdlc1wiLCB5ID0gXCJGcmVxdWVuY3lcIikgKyBmYWNldF9ncmlkKEdyb3Vwfi4pIFxuYGBgXG5cbjwhLS0gcm5iLXNvdXJjZS1lbmQgLS0+XG4ifQ== -->
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxubG9uZ3RleHQgJT4lIGdncGxvdChhZXMoeCA9IENvdW50KSkrZ2VvbV9oaXN0b2dyYW0oYWVzKGNvbG9yPVRpbWUsXG5maWxsPVRpbWUpLHBvc2l0aW9uPVwiaWRlbnRpdHlcIixcbiBiaW5zPTEwLGFscGhhID0gMC40KSArIHNjYWxlX2NvbG9yX21hbnVhbCh2YWx1ZXMgPSBjKFwiYmx1ZVwiLFxuICAgIFwicmVkXCIpKSArIHNjYWxlX2ZpbGxfbWFudWFsKHZhbHVlcyA9IGMoXCJibHVlXCIsIFwicmVkXCIpKSArXG4gIGxhYnModGl0bGU9XCJUb3RhbCBOdW1iZXIgb2YgVGV4dCBNZXNzYWdlczogQmFzZWxpbmUgdnMuNiBNb250aHMgQnkgR3JvdXAgXCIsXG4gICAgICAgeD1cIiBUZXh0IE1lc3NhZ2VzXCIsIHkgPSBcIkZyZXF1ZW5jeVwiKSArIGZhY2V0X2dyaWQoR3JvdXB+LikgXG5gYGAifQ== -->
+<pre class="r"><code>longtext %&gt;% ggplot(aes(x = Count))+geom_histogram(aes(color=Time,
+fill=Time),position=&quot;identity&quot;,
+ bins=10,alpha = 0.4) + scale_color_manual(values = c(&quot;blue&quot;,
+    &quot;red&quot;)) + scale_fill_manual(values = c(&quot;blue&quot;, &quot;red&quot;)) +
+  labs(title=&quot;Total Number of Text Messages: Baseline vs.6 Months By Group &quot;,
+       x=&quot; Text Messages&quot;, y = &quot;Frequency&quot;) + facet_grid(Group~.) </code></pre>
+<!-- rnb-source-end -->
+<!-- rnb-output-end -->
 <!-- rnb-chunk-end -->
 <!-- rnb-text-begin -->
 <!-- rnb-text-end -->
 </div>
 
-<div id="rmd-source-code">LS0tDQp0aXRsZTogIkdpdGh1YiBDb2xsYWJvcmF0aW9uIg0KYXV0aG9yOiBUaW5nd2VpIEFkZWNrLCBLYWl0eSBUcmluaWRhZCwgTm9vciBBYXlsYQ0KZGF0ZTogJ2ByIGZvcm1hdChTeXMudGltZSgpLCAiJUIgJWQsICVZIilgJw0Kb3V0cHV0Og0KICBwZGZfZG9jdW1lbnQ6DQogICAgbGF0ZXhfZW5naW5lOiB4ZWxhdGV4DQogIGh0bWxfZG9jdW1lbnQ6DQogICAgZGZfcHJpbnQ6IHBhZ2VkDQogIGh0bWxfbm90ZWJvb2s6IGRlZmF1bHQNCiAgd29yZF9kb2N1bWVudDogZGVmYXVsdA0KaGVhZGVyLWluY2x1ZGVzOg0KICAtIFx1c2VwYWNrYWdle2dlb21ldHJ5fSANCiAgLSBcZ2VvbWV0cnl7dG9wPTAuNWlufQ0KICAtIFx1c2VwYWNrYWdle2Zsb2F0fQ0KICAtIFx1c2VwYWNrYWdle3RpdGxlc2VjfQ0KICAtIFx1c2VwYWNrYWdle2Ftc21hdGh9DQogIC0gXHVzZXBhY2thZ2V7YW1zc3ltYn0NCi0tLQ0KDQojIyBHaXRodWIgQ29sbGFib3JhdGlvbg0KDQojIyBWaXogT25lDQoNCmBgYHtyIFZpeiBPbmUsIHdhcm5pbmc9RkFMU0UsIG1lc3NhZ2U9RkFMU0V9DQoNCmBgYA0KDQo=</div>
+<div id="rmd-source-code">LS0tDQp0aXRsZTogIkdpdGh1YiBDb2xsYWJvcmF0aW9uIg0KYXV0aG9yOiBUaW5nd2VpIEFkZWNrLCBLYWl0eSBUcmluaWRhZCwgTm9vciBBYXlsYQ0KZGF0ZTogJ2ByIGZvcm1hdChTeXMudGltZSgpLCAiJUIgJWQsICVZIilgJw0Kb3V0cHV0Og0KICBwZGZfZG9jdW1lbnQ6DQogICAgbGF0ZXhfZW5naW5lOiB4ZWxhdGV4DQogIGh0bWxfZG9jdW1lbnQ6DQogICAgZGZfcHJpbnQ6IHBhZ2VkDQogIGh0bWxfbm90ZWJvb2s6IGRlZmF1bHQNCiAgd29yZF9kb2N1bWVudDogZGVmYXVsdA0KaGVhZGVyLWluY2x1ZGVzOg0KICAtIFx1c2VwYWNrYWdle2dlb21ldHJ5fSANCiAgLSBcZ2VvbWV0cnl7dG9wPTAuNWlufQ0KICAtIFx1c2VwYWNrYWdle2Zsb2F0fQ0KICAtIFx1c2VwYWNrYWdle3RpdGxlc2VjfQ0KICAtIFx1c2VwYWNrYWdle2Ftc21hdGh9DQogIC0gXHVzZXBhY2thZ2V7YW1zc3ltYn0NCi0tLQ0KDQojIHByZXBhcmUgZGF0YQ0KDQpgYGB7cn0NCiNJbXBvcnQgRGF0YQ0KVGV4dCA8LXJlYWQuY3N2KCJUZXh0TWVzc2FnZXMuY3N2IiwgaGVhZGVyPVRSVUUpDQpsb25ndGV4dDwtZ2F0aGVyKFRleHQsVGltZSxDb3VudCxCYXNlbGluZTpTaXhfbW9udGhzLCBmYWN0b3Jfa2V5ID0gVFJVRSApDQpgYGANCg0KIyBWaXN1YWxpemF0aW9uIFR3bw0KDQpgYGB7ciBmYWNldCBiYXIgcGxvdCwgbWVzc2FnZT1GQUxTRSwgd2FybmluZz1GQUxTRSwgZmlnLndpZHRoPTgsIGZpZy5oZWlnaHQ9NiwgZmlnLmFsaWduPSdjZW50ZXInfQ0KYmFycCA8LSBnZ3Bsb3QoVGV4dE1lc3NhZ2VzX2xvbmcsIA0KICAgICAgICAgICAgICAgYWVzKHggPSBHcm91cF9mYWN0b3IsIA0KICAgICAgICAgICAgICAgICAgIHkgPSBWYWx1ZSwgDQogICAgICAgICAgICAgICAgICAgZmlsbCA9IEdyb3VwX2ZhY3RvcikpICsNCiAgZ2VvbV9iYXIoc3RhdCA9ICJpZGVudGl0eSIsIHBvc2l0aW9uID0gImRvZGdlIikgKw0KICBmYWNldF9ncmlkKC4gfiBUaW1lcG9pbnQsIHNjYWxlcyA9ICJmcmVlIikgKw0KICBsYWJzKHggPSAiR3JvdXAgRmFjdG9yIiwgeSA9ICJWYWx1ZSIsIA0KICAgICAgIHRpdGxlID0gIkNvbXBhcmlzb24gb2YgQmFzZWxpbmUgYW5kIFNpeCBNb250aHMgVmFsdWVzIikNCg0KcHJpbnQoYmFycCkNCmBgYA0KDQojIEthaXR5J3MgSGlzdG9ncmFtDQoNCmBgYHtyfQ0KbG9uZ3RleHQgJT4lIGdncGxvdChhZXMoeCA9IENvdW50KSkrZ2VvbV9oaXN0b2dyYW0oYWVzKGNvbG9yPVRpbWUsDQpmaWxsPVRpbWUpLHBvc2l0aW9uPSJpZGVudGl0eSIsDQogYmlucz0xMCxhbHBoYSA9IDAuNCkgKyBzY2FsZV9jb2xvcl9tYW51YWwodmFsdWVzID0gYygiYmx1ZSIsDQogICAgInJlZCIpKSArIHNjYWxlX2ZpbGxfbWFudWFsKHZhbHVlcyA9IGMoImJsdWUiLCAicmVkIikpICsNCiAgbGFicyh0aXRsZT0iVG90YWwgTnVtYmVyIG9mIFRleHQgTWVzc2FnZXM6IEJhc2VsaW5lIHZzLjYgTW9udGhzIEJ5IEdyb3VwICIsDQogICAgICAgeD0iIFRleHQgTWVzc2FnZXMiLCB5ID0gIkZyZXF1ZW5jeSIpICsgZmFjZXRfZ3JpZChHcm91cH4uKSANCmBgYA0KDQoNCg==</div>
 
 
 

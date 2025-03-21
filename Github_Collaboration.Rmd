@@ -18,11 +18,38 @@ header-includes:
   - \usepackage{amssymb}
 ---
 
-## Github Collaboration
+# prepare data
 
-## Viz One
-
-```{r Viz One, warning=FALSE, message=FALSE}
-
+```{r}
+#Import Data
+Text <-read.csv("TextMessages.csv", header=TRUE)
+longtext<-gather(Text,Time,Count,Baseline:Six_months, factor_key = TRUE )
 ```
+
+# Visualization Two
+
+```{r facet bar plot, message=FALSE, warning=FALSE, fig.width=8, fig.height=6, fig.align='center'}
+barp <- ggplot(TextMessages_long, 
+               aes(x = Group_factor, 
+                   y = Value, 
+                   fill = Group_factor)) +
+  geom_bar(stat = "identity", position = "dodge") +
+  facet_grid(. ~ Timepoint, scales = "free") +
+  labs(x = "Group Factor", y = "Value", 
+       title = "Comparison of Baseline and Six Months Values")
+
+print(barp)
+```
+
+# Kaity's Histogram
+
+```{r}
+longtext %>% ggplot(aes(x = Count))+geom_histogram(aes(color=Time,
+fill=Time),position="identity",
+ bins=10,alpha = 0.4) + scale_color_manual(values = c("blue",
+    "red")) + scale_fill_manual(values = c("blue", "red")) +
+  labs(title="Total Number of Text Messages: Baseline vs.6 Months By Group ",
+       x=" Text Messages", y = "Frequency") + facet_grid(Group~.) 
+```
+
 
