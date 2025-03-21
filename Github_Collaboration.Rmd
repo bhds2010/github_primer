@@ -18,60 +18,102 @@ header-includes:
   - \usepackage{amssymb}
 ---
 
-## Github Collaboration
-
-## Viz One
-
-```{r Viz One, warning=FALSE, message=FALSE}
-#Set working directory 
- setwd("C:/Users/19734/Desktop/Courses/BHDS2010/github_primer")
-#Ongoing list of libraries that have been used so far 
-#library(pastecs)
-#library(tidyverse)
-#library("readxl")
-#library(ggplot2)
-#library(dplyr)
-#library(Hmisc)
-#library(plyr)
-#library(gridExtra)
-#library(moments)
-#library(viridis)
-#library(hrbrthemes)
-# library(tidyr)
-# library("sandwich")
-# library(RVAideMemoire)
-# library(reshape2)
-# library(car)
-
-#Import Data
-Text <-read.csv("TextMessages.csv", header=TRUE)
-head(Text)
+```{r echo=FALSE, warning=FALSE, message=FALSE}
+#housework
+library(utils)
+library(pastecs)
+library(readxl)
+#tidyverse
+library(dplyr)
+library(tidyr)
+library(broom)
+library(janitor)
+#plotting
+library(rlang)
+library(ggplot2)
+library(RColorBrewer)
+library(ggnormfluodbf)
+#stats
+library(stats) #shapiro
+library(dgof) #kolmogorov
+library(car) #levene's
+#markdown
+library(knitr)
+library(kableExtra)
 ```
 
+# Import Data
 
-```{r Viz two, warning=FALSE, message=FALSE}
-
-#Create dataframe for imported data set
-text<as.data.frame(text)
-is.data.frame
-
-#Check to see if Group is considered a factor 
-is.factor(text$Group)
-as.factor(text$Group)
-
-#In order to group the histograms by Group and Time period, we need two factor
-#variables so we convert both baseline and 6 months into one category (Time) by 
-#reshaping the data from long to wide 
-
-longtext<-gather(text,Time,Count,Baseline:Six_months, factor_key = TRUE )
-
-#Faceted histograms of time points by group
-
-longtext %>% ggplot(aes(x = Count))+geom_histogram(aes(color=Time,
-fill=Time),position="identity",
- bins=10,alpha = 0.4) + scale_color_manual(values = c("blue",
-    "red")) + scale_fill_manual(values = c("blue", "red")) +
-  labs(title="Total Number of Text Messages: Baseline vs.6 Months By Group ",
-       x=" Text Messages", y = "Frequency") + facet_grid(Group~.) 
+```{r import txtmsg data, warning=FALSE, message=FALSE}
+library(readr)
+TextMessages <- read_csv("TextMessages.csv")
+#View(TextMessages)
+head(TextMessages)
 ```
 
+# Factorization (Data Wrangling)
+
+```{r factorize, message=FALSE, warning=FALSE}
+#factor a variable en place - risky
+make_factor <- function(data, var){
+  refactored <- as.factor(data[[var]]) #make factor
+  data[[var]] <- refactored #assign factor back to var
+  data #return
+}
+
+#factor with labels scalably
+#!!! to unpack the vectors and setnames to map values to labels
+make_factor_scale <- function(data, var, newvarName, fact_num_vect, 
+                                    fact_char_vect) {
+  data[[newvarName]] <- dplyr::recode(data[[var]], 
+                                      !!!setNames(fact_char_vect,
+                                                  fact_num_vect)) 
+  data
+}
+
+#check the groups
+unique(TextMessages$Group)
+TextMessages <- make_factor_scale(TextMessages, 
+                                       "Group", 
+                                       "Group_factor", c(1,2), 
+                                       c("Group 1", 
+                                         "Group 2"))
+TextMessages <- TextMessages %>% 
+  dplyr::relocate("Group_factor", .after = "Group")
+```
+# Visualization One
+
+***Creates stratified boxplot of text messages by Group and Time (Hint: Faceted Boxplot)?***
+
+```{r facet box plot, message=FALSE, warning=FALSE, fig.width=8, fig.height=6, fig.align='center'}
+#pivot data
+TextMessages_long <- TextMessages %>%
+  pivot_longer(cols = c(Baseline, Six_months), 
+               names_to = "Timepoint", 
+               values_to = "Value")
+
+#make facet
+boxp <- ggplot(TextMessages_long, 
+             aes(x = Group_factor, 
+                 y = Value, 
+                 fill = Group_factor)) +
+  geom_boxplot() +
+  facet_grid(. ~ Timepoint, scales = "free") +
+  labs(x = "Group Factor", y = "Value", 
+       title = "Comparison of Baseline and Six Months Values")
+
+print(boxp)
+```
+
+# Visualization Two
+
+```{r facet bar plot, message=FALSE, warning=FALSE, fig.width=8, fig.height=6, fig.align='center'}
+#pivot data
+TextMessages_long <- TextMessages %>%
+  pivot_longer(cols = c(Baseline, Six_months), 
+               names_to = "Timepoint", 
+               values_to = "Value")
+
+
+# References
+[ggplot2 facet : split a plot into a matrix of panels ](https://www.sthda.com/english/wiki/ggplot2-facet-split-a-plot-into-a-matrix-of-panels)
