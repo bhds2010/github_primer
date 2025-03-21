@@ -3,11 +3,11 @@ title: "Github Collaboration"
 author: Tingwei Adeck, Kaity Trinidad, Noor Aayla
 date: '`r format(Sys.time(), "%B %d, %Y")`'
 output:
-  html_notebook: default
-  html_document:
-    df_print: paged
   pdf_document:
     latex_engine: xelatex
+  html_document:
+    df_print: paged
+  html_notebook: default
   word_document: default
 header-includes:
   - \usepackage{geometry} 
@@ -57,6 +57,8 @@ kable(head(TextMessages,5), format = "markdown", #
       table.envir = "table", align = "c")
 ```
 
+\newpage
+
 # Factorization (Data Wrangling)
 
 ```{r factorize, message=FALSE, warning=FALSE}
@@ -88,6 +90,8 @@ TextMessages <- TextMessages %>%
   dplyr::relocate("Group_factor", .after = "Group")
 ```
 
+\newpage
+
 # Summary Table Setup
 
 ```{r}
@@ -113,16 +117,20 @@ wide_data <- em_summ_df_sm %>%
 ```
 
 ```{r}
-kable(em_summ_df, format = "latex", 
-      caption = "Statistical Summary Long Table for Essay Marks", 
+kable(em_summ_df_bs, format = "markdown", 
+      caption = "Statistical Summary Long Table for Baseline", 
       table.envir = "table", align = "c")
 ```
 
+\newpage
+
 ```{r}
-kable(em_summ_df, format = "latex", 
-      caption = "Statistical Summary Long Table for Essay Marks", 
+kable(em_summ_df_sm, format = "markdown", 
+      caption = "Statistical Summary Long Table for Six Months", 
       table.envir = "table", align = "c")
 ```
+
+\newpage
 
 # Breakdown
 
@@ -137,6 +145,7 @@ messages, respectively.
 
 Both groups showed a decline in the number of text messages sent over time. However, Group 1 experienced a greater decrease, suggesting that participants in this group reduced their texting behavior more substantially. Additionally,the increase in standard deviation for Group 1 at six months indicates greater variability in how much texting behavior changed within this group—some participants may have significantly reduced their texting, while others maintained a more consistent level. On the other hand, Group 2 exhibited more stable texting behavior, with a smaller overall decline and less variability over time.
 
+\newpage
 
 # References
 
