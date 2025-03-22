@@ -179,6 +179,37 @@ Both groups showed a decline in the number of text messages sent over time. Howe
 
 \newpage
 
+# Barplot Visualization
+
+```{r}
+longtext <- gather(TextMessages,Time,Count,Baseline:Six_months, factor_key = TRUE )
+```
+
+
+```{r}
+longtext %>% ggplot(aes(x = Group_factor, y = Count))+geom_bar() +
+  labs(title="Total Number of Text Messages: Baseline vs.6 Months By Group ",
+       x=" Text Messages", y = "Frequency") + facet_grid(Group~.) 
+```
+
+
+```{r facet bar plot, echo = FALSE, include=F, message=FALSE, warning=FALSE, fig.width=8, fig.height=6, fig.align='center'}
+#ideal solution just need to add error bars
+barp <- ggplot(TextMessages_long, 
+               aes(x = Group_factor, 
+                   y = Value, 
+                   fill = Group_factor)) +
+  geom_bar(stat = "identity", position = "dodge") +
+  facet_grid(. ~ Timepoint, scales = "free") +
+  labs(x = "Group Factor", y = "Value", 
+       title = "Comparison of Baseline and Six Months Values")
+
+print(barp)
+```
+
+
+\newpage
+
 # References
 
 [ggplot2 facet : split a plot into a matrix of panels ](https://www.sthda.com/english/wiki/ggplot2-facet-split-a-plot-into-a-matrix-of-panels)
