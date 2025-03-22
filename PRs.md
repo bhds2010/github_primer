@@ -59,6 +59,15 @@ gh pr list #no open PRs
 gh pr create -B summary-statistics #summary-statistics is just an example
 gh pr create --fill #autofill
 
+#view changes
+gh pr view
+
+#mark it as ready for review
+gh pr ready
+
+#review it
+gh pr review
+
 #initiate the merge with binary files changed
 #initiated in docu_review
 git checkout docu_review #already checked out
@@ -69,9 +78,6 @@ git checkout --theirs Github_Collaboration.Rmd Github_Collaboration.nb.html Gith
 
 #add modified files or accepted changes
 git add README.md Github_Collaboration.Rmd Github_Collaboration.nb.html Github_Collaboration.pdf
-
-#view changes
-gh pr view
 
 #commit to merge
 git commit -m "Resolved merge conflicts in README.md, Github_Collaboration.pdf, Github_Collaboration.nb.html, and Github_Collaboration.Rmd"
@@ -101,9 +107,6 @@ gh pr ready
 
 #view pr
 gh pr view
-
-#review it
-gh pr review
 
 #close pr
 gh pr close
