@@ -134,6 +134,7 @@ git checkout --ours Github_Collaboration.pdf #git checkout --theirs Github_Colla
 git add Github_Collaboration.pdf
 git commit -m "Resolved merge conflict in Github_Collaboration.pdf"
 git status
+git push origin summary-statistics
 ```
 
 ## Reference
