@@ -82,5 +82,8 @@ TextMessages <- TextMessages %>%
   dplyr::relocate("Group_factor", .after = "Group")
 ```
 
+This is a test now of making changes to a binary file and then doing all the needed merges.
+
 # References
+
 [ggplot2 facet : split a plot into a matrix of panels ](https://www.sthda.com/english/wiki/ggplot2-facet-split-a-plot-into-a-matrix-of-panels)
