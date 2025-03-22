@@ -86,7 +86,7 @@ git commit -m "Resolved merge conflicts in README.md, Github_Collaboration.pdf, 
 git push origin docu_review
 
 #finally try the merge again
-git merge summary-statistics
+git merge branch <summary-statistics>
 
 #finally cloud merge
 gh pr merge
