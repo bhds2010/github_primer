@@ -46,7 +46,6 @@ library(kableExtra)
 
 ```{r import txtmsg data, warning=FALSE, message=FALSE}
 library(readr)
-<<<<<<< HEAD
 TextMessages <- read_csv("TextMessages.csv") #1-use read_csv (parent df)
 #View(TextMessages)
 #head(TextMessages)
@@ -59,12 +58,6 @@ kable(head(TextMessages,5), format = "markdown", #
 ```
 
 \newpage
-
-=======
-TextMessages <- read_csv("TextMessages.csv")
-#View(TextMessages)
-head(TextMessages)
-```
 
 # Factorization (Data Wrangling)
 
