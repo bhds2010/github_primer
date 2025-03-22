@@ -20,8 +20,22 @@ gh pr list #no open PRs
 
 #if I want to merge 2 or branches then a pull request has to be setup
 #for this to work all commits must be up to date
+#also commits and pushes can be made after a PR has been initiated
 #You can check in the browser 
+#this is created from docu_review
 gh pr create -B summary-statistics #summary-statistics is just an example
 
+#initiate the merge with binary files changed
+#initiated in docu_review
+git checkout docu_review #already checked out
+git merge summary-statistics #immediately conflicts arise 
 
+#the key stage here is how to fix conflicts in binary vs .txt files
+git checkout --theirs Github_Collaboration.Rmd Github_Collaboration.nb.html Github_Collaboration.pdf
+
+#add modified files or accepted changes
+git add README.md Github_Collaboration.Rmd Github_Collaboration.nb.html Github_Collaboration.pdf
+
+#commit to merge
+git commit -m "Resolved merge conflicts in README.md, Github_Collaboration.pdf, Github_Collaboration.nb.html, and Github_Collaboration.Rmd"
 ```
