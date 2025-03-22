@@ -46,6 +46,7 @@ library(kableExtra)
 
 ```{r import txtmsg data, warning=FALSE, message=FALSE}
 library(readr)
+<<<<<<< HEAD
 TextMessages <- read_csv("TextMessages.csv") #1-use read_csv (parent df)
 #View(TextMessages)
 #head(TextMessages)
@@ -58,6 +59,12 @@ kable(head(TextMessages,5), format = "markdown", #
 ```
 
 \newpage
+
+=======
+TextMessages <- read_csv("TextMessages.csv")
+#View(TextMessages)
+head(TextMessages)
+```
 
 # Factorization (Data Wrangling)
 
@@ -149,4 +156,7 @@ Both groups showed a decline in the number of text messages sent over time. Howe
 
 # References
 
+=======
+# References
+>>>>>>> docu_review
 [ggplot2 facet : split a plot into a matrix of panels ](https://www.sthda.com/english/wiki/ggplot2-facet-split-a-plot-into-a-matrix-of-panels)
