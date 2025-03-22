@@ -1,0 +1,120 @@
+---
+title: "Github Collaboration"
+author: Tingwei Adeck, Kaity Trinidad, Noor Aayla
+date: '`r format(Sys.time(), "%B %d, %Y")`'
+output:
+  pdf_document:
+    latex_engine: xelatex
+  html_document:
+    df_print: paged
+  html_notebook: default
+  word_document: default
+header-includes:
+  - \usepackage{geometry} 
+  - \geometry{top=0.5in}
+  - \usepackage{float}
+  - \usepackage{titlesec}
+  - \usepackage{amsmath}
+  - \usepackage{amssymb}
+---
+
+```{r echo=FALSE, warning=FALSE, message=FALSE}
+#housework
+library(utils)
+library(pastecs)
+library(readxl)
+#tidyverse
+library(dplyr)
+library(tidyr)
+library(broom)
+library(janitor)
+#plotting
+library(rlang)
+library(ggplot2)
+library(RColorBrewer)
+library(ggnormfluodbf)
+#stats
+library(stats) #shapiro
+library(dgof) #kolmogorov
+library(car) #levene's
+#markdown
+library(knitr)
+library(kableExtra)
+```
+
+# Import Data
+
+```{r import txtmsg data, warning=FALSE, message=FALSE}
+library(readr)
+TextMessages <- read_csv("TextMessages.csv")
+#View(TextMessages)
+head(TextMessages)
+```
+
+# Factorization (Data Wrangling)
+
+```{r factorize, message=FALSE, warning=FALSE}
+#factor a variable en place - risky
+make_factor <- function(data, var){
+  refactored <- as.factor(data[[var]]) #make factor
+  data[[var]] <- refactored #assign factor back to var
+  data #return
+}
+
+#factor with labels scalably
+#!!! to unpack the vectors and setnames to map values to labels
+make_factor_scale <- function(data, var, newvarName, fact_num_vect, 
+                                    fact_char_vect) {
+  data[[newvarName]] <- dplyr::recode(data[[var]], 
+                                      !!!setNames(fact_char_vect,
+                                                  fact_num_vect)) 
+  data
+}
+
+#check the groups
+unique(TextMessages$Group)
+TextMessages <- make_factor_scale(TextMessages, 
+                                       "Group", 
+                                       "Group_factor", c(1,2), 
+                                       c("Group 1", 
+                                         "Group 2"))
+TextMessages <- TextMessages %>% 
+  dplyr::relocate("Group_factor", .after = "Group")
+```
+
+
+# prepare data (Kaity's way)
+
+```{r}
+#Import Data
+Text <-read.csv("TextMessages.csv", header=TRUE)
+longtext<-gather(Text,Time,Count,Baseline:Six_months, factor_key = TRUE )
+```
+
+# Visualization Two
+
+```{r facet bar plot, message=FALSE, warning=FALSE, fig.width=8, fig.height=6, fig.align='center'}
+barp <- ggplot(TextMessages_long, 
+               aes(x = Group_factor, 
+                   y = Value, 
+                   fill = Group_factor)) +
+  geom_bar(stat = "identity", position = "dodge") +
+  facet_grid(. ~ Timepoint, scales = "free") +
+  labs(x = "Group Factor", y = "Value", 
+       title = "Comparison of Baseline and Six Months Values")
+
+print(barp)
+```
+
+# Kaity's Histogram
+
+```{r}
+longtext %>% ggplot(aes(x = Count))+geom_histogram(aes(color=Time,
+fill=Time),position="identity",
+ bins=10,alpha = 0.4) + scale_color_manual(values = c("blue",
+    "red")) + scale_fill_manual(values = c("blue", "red")) +
+  labs(title="Total Number of Text Messages: Baseline vs.6 Months By Group ",
+       x=" Text Messages", y = "Frequency") + facet_grid(Group~.) 
+```
+
+
