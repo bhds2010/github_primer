@@ -215,7 +215,7 @@ print(barp)
 
 # Bar plot Interpretation
 
-<Kaity Add description and interpretation Here>
+\textcolor{blue}{Kaity Add description and interpretation Here}
 
 \newpage
 
