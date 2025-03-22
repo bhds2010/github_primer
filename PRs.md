@@ -4,6 +4,18 @@ Once CLI is mastered GUI becomes a little more intuitive.
 
 It is cool to have the command line (CLI) for github but in case you do NOT that is fine.
 
+## Commiting from CLI
+
+```bash
+git status
+git add . #PRs.md
+git commit -m "msg"
+git push origin docu_review
+
+#or in one line
+git commit -a -m "msg"
+```
+
 ## An update to PRs in Github
 
 It is cool to have the command line (CLI) for github but in case you do NOT that is fine.
@@ -38,4 +50,11 @@ git add README.md Github_Collaboration.Rmd Github_Collaboration.nb.html Github_C
 
 #commit to merge
 git commit -m "Resolved merge conflicts in README.md, Github_Collaboration.pdf, Github_Collaboration.nb.html, and Github_Collaboration.Rmd"
+
+#push and resolve the PR from the CLI
+git push origin docu_review
+
+#finally try the merge again
+git merge summary-statistics
 ```
+
