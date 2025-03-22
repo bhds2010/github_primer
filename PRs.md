@@ -70,8 +70,8 @@ gh pr review
 
 #initiate the merge with binary files changed
 #initiated in docu_review
-git checkout docu_review #already checked out
-git merge summary-statistics #immediately conflicts arise 
+git checkout branch <docu_review> #already checked out
+git merge branch <summary-statistics> #immediately conflicts arise 
 
 #the key stage here is how to fix conflicts in binary vs .txt files
 git checkout --theirs Github_Collaboration.Rmd Github_Collaboration.nb.html Github_Collaboration.pdf
