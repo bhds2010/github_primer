@@ -355,6 +355,33 @@ display: none;
 <div id="prs-using-cli" class="section level1">
 <h1>PRs using CLI</h1>
 <p>Once CLI is mastered GUI becomes a little more intuitive.</p>
+<p>It is cool to have the command line (CLI) for github but in case you
+do NOT that is fine.</p>
+<div id="auth-cli" class="section level2">
+<h2>Auth CLI</h2>
+<pre class="bash"><code>gh auth login</code></pre>
+</div>
+<div id="kill-git" class="section level2">
+<h2>Kill Git</h2>
+<pre class="bash"><code>taskkill /F /IM git.exe
+
+#linux
+killall git</code></pre>
+</div>
+<div id="view-pr-in-web" class="section level2">
+<h2>View PR in web</h2>
+<pre class="bash"><code>gh pr view --web</code></pre>
+</div>
+<div id="commiting-from-cli" class="section level2">
+<h2>Commiting from CLI</h2>
+<pre class="bash"><code>git status
+git add . #PRs.md
+git commit -m &quot;msg&quot;
+git push origin docu_review
+
+#or in one line
+git commit -a -m &quot;msg&quot;</code></pre>
+</div>
 <div id="an-update-to-prs-in-github" class="section level2">
 <h2>An update to PRs in Github</h2>
 <p>It is cool to have the command line (CLI) for github but in case you
@@ -370,9 +397,72 @@ gh pr list #no open PRs
 
 #if I want to merge 2 or branches then a pull request has to be setup
 #for this to work all commits must be up to date
+#also commits and pushes can be made after a PR has been initiated
 #You can check in the browser 
+#this is created from docu_review
 gh pr create -B summary-statistics #summary-statistics is just an example
-</code></pre>
+gh pr create --fill #autofill
+
+#initiate the merge with binary files changed
+#initiated in docu_review
+git checkout docu_review #already checked out
+git merge summary-statistics #immediately conflicts arise 
+
+#the key stage here is how to fix conflicts in binary vs .txt files
+git checkout --theirs Github_Collaboration.Rmd Github_Collaboration.nb.html Github_Collaboration.pdf
+
+#add modified files or accepted changes
+git add README.md Github_Collaboration.Rmd Github_Collaboration.nb.html Github_Collaboration.pdf
+
+#view changes
+gh pr view
+
+#commit to merge
+git commit -m &quot;Resolved merge conflicts in README.md, Github_Collaboration.pdf, Github_Collaboration.nb.html, and Github_Collaboration.Rmd&quot;
+
+#push and resolve the PR from the CLI
+git push origin docu_review
+
+#finally try the merge again
+git merge summary-statistics
+
+#finally cloud merge
+gh pr merge
+
+#NOTES
+#will figure this out
+gh pr checkout 12 &amp;&amp; git fetch origin docu_review &amp;&amp; git rebase origin/docu_review
+
+#fix conflicts like above and rebase
+git rebase --continue</code></pre>
+</div>
+<div id="ancillary-pr-commands" class="section level2">
+<h2>Ancillary PR commands</h2>
+<pre class="bash"><code>#mark it as ready for review
+gh pr ready
+
+#view pr
+gh pr view
+
+#review it
+gh pr review
+
+#close pr
+gh pr close
+
+#reopen
+gh pr reopen
+
+#lock convo
+gh pr lock</code></pre>
+</div>
+<div id="references" class="section level2">
+<h2>References</h2>
+<p><a href="https://github.com/cli/cli/blob/trunk/docs/install_linux.md">Github
+CLI Linux Install</a></p>
+<p><a href="https://github.com/cli/cli#installation">Github CLI
+installation</a></p>
+<p><a href="https://cli.github.com/">Github CLI</a></p>
 </div>
 </div>
 
