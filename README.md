@@ -127,18 +127,6 @@ rm -f .git/index.lock
 git branch -d <brachname>
 ```
 
-## Merging stuff
-
-```bash
-git checkout --ours Github_Collaboration.pdf #git checkout --theirs Github_Collaboration.pdf
-git add Github_Collaboration.pdf
-git commit -m "Resolved merge conflict in Github_Collaboration.pdf"
-git status
-git push origin summary-statistics
-
-gh pr merge
-```
-
 ## Reference
 
 [Git Creds](https://gitcreds.r-lib.org/reference/gitcreds_get.html)
