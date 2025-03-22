@@ -46,7 +46,6 @@ library(kableExtra)
 
 ```{r import txtmsg data, warning=FALSE, message=FALSE}
 library(readr)
-<<<<<<< HEAD
 TextMessages <- read_csv("TextMessages.csv") #1-use read_csv (parent df)
 #View(TextMessages)
 #head(TextMessages)
@@ -60,13 +59,11 @@ kable(head(TextMessages,5), format = "markdown", #
 
 \newpage
 
-=======
-TextMessages <- read_csv("TextMessages.csv")
-#View(TextMessages)
-head(TextMessages)
-```
-
 # Factorization (Data Wrangling)
+
+```{r check df}
+str(TextMessages)
+```
 
 ```{r factorize, message=FALSE, warning=FALSE}
 #factor a variable en place - risky
@@ -83,6 +80,8 @@ make_factor_scale <- function(data, var, newvarName, fact_num_vect,
   data[[newvarName]] <- dplyr::recode(data[[var]], 
                                       !!!setNames(fact_char_vect,
                                                   fact_num_vect)) 
+  refactored <- as.factor(data[[newvarName]])
+  data[[newvarName]] <- refactored
   data
 }
 
@@ -93,15 +92,43 @@ TextMessages <- make_factor_scale(TextMessages,
                                        "Group_factor", c(1,2), 
                                        c("Group 1", 
                                          "Group 2"))
-TextMessages <- TextMessages %>% 
+
+TextMessages <- TextMessages %>%
   dplyr::relocate("Group_factor", .after = "Group")
 ```
 
 \newpage
 
-# Summary Table Setup
+# Summary Statistics
 
 ```{r}
+summary_stats_long <- TextMessages %>% 
+  group_by(Group_factor) %>% 
+  summarise(
+    Baseline_Mean = mean(Baseline, na.rm = TRUE),
+    Baseline_SD = sd(Baseline, na.rm = TRUE),
+    Baseline_Min = min(Baseline, na.rm = TRUE),
+    Baseline_Max = max(Baseline, na.rm = TRUE),
+    SixMonths_Mean = mean(Six_months, na.rm = TRUE),
+    SixMonths_SD = sd(Six_months, na.rm = TRUE),
+    SixMonths_Min = min(Six_months, na.rm = TRUE),
+    SixMonths_Max = max(Six_months, na.rm = TRUE)
+  ) %>%
+  pivot_longer(
+    cols = -Group_factor,
+    names_to = c("Timepoint", "Statistic"),
+    names_sep = "_"
+  )
+```
+
+```{r echo = FALSE}
+kable(summary_stats_long, format = "markdown", 
+      caption = "Statistical Summary for Baseline and Six Months", 
+      table.envir = "table", align = "c")
+```
+
+```{r echo = FALSE, include=FALSE}
+#ideal key but using Noors
 Value_bs <- stat.desc(TextMessages$Baseline)
 Value_sm <- stat.desc(TextMessages$Six_months)
 em_summ_df_bs <- as.data.frame(Value_bs)
@@ -123,15 +150,13 @@ wide_data <- em_summ_df_sm %>%
   pivot_wider(names_from = "Statistic", values_from = colnames(em_summ_df_sm)[2])
 ```
 
-```{r}
+```{r eval=FALSE, include=FALSE}
 kable(em_summ_df_bs, format = "markdown", 
       caption = "Statistical Summary Long Table for Baseline", 
       table.envir = "table", align = "c")
 ```
 
-\newpage
-
-```{r}
+```{r echo = FALSE, include=FALSE}
 kable(em_summ_df_sm, format = "markdown", 
       caption = "Statistical Summary Long Table for Six Months", 
       table.envir = "table", align = "c")
