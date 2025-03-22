@@ -135,6 +135,8 @@ git add Github_Collaboration.pdf
 git commit -m "Resolved merge conflict in Github_Collaboration.pdf"
 git status
 git push origin summary-statistics
+
+gh pr merge
 ```
 
 ## Reference
