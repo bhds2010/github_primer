@@ -269,7 +269,14 @@ print(barp)
 
 # Bar plot Interpretation
 
-\textcolor{blue}{Kaity Add description and interpretation Here}
+\textcolor{blue}{Looking at the error bar charts, the overlap between both 
+groups shows that there is a chance of no statistical significance in the 
+difference in means between both groups at baseline. If we proceed to the 
+sixth month follow up, there is confirmation that in fact both groups have a 
+decline in text messaging, more so for group 1 than group 2.
+Looking at the error bars in the histogram,
+it is clear that there could be some statistical significance in the difference
+in means between both groups at the six month follow up. }
 
 \newpage
 
