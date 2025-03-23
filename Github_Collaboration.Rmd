@@ -185,7 +185,7 @@ installed that I could not find the name for such as library(ggnormfluodbf)
 I do not know where to add my comments so I will do it here. Also I noticed that
 the boxplots where not there so I did code for that. I created a chunk with 
 both codes for both plots. The description for both plots should be under this
-chunk that I created
+chunk that I created - disregard I will merge the pull from docureview
 ```{r}
 boxp <- ggplot(TextMessages_long,
                aes(x = Group_factor,
