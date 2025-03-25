@@ -97,6 +97,19 @@ TextMessages <- TextMessages %>%
   dplyr::relocate("Group_factor", .after = "Group")
 ```
 
+
+```{r}
+#pivot kaity way
+longtext <- gather(TextMessages,Time,Count,Baseline:Six_months, factor_key = TRUE )
+
+#pivot data Tingwei way
+TextMessages_long <- TextMessages %>%
+  pivot_longer(cols = c(Baseline, Six_months), 
+               names_to = "Timepoint", 
+               values_to = "Value")
+```
+
+
 \newpage
 
 # Summary Statistics
@@ -177,22 +190,39 @@ messages, respectively.
 
 Both groups showed a decline in the number of text messages sent over time. However, Group 1 experienced a greater decrease, suggesting that participants in this group reduced their texting behavior more substantially. Additionally,the increase in standard deviation for Group 1 at six months indicates greater variability in how much texting behavior changed within this group—some participants may have significantly reduced their texting, while others maintained a more consistent level. On the other hand, Group 2 exhibited more stable texting behavior, with a smaller overall decline and less variability over time.
 
+\newpage
 
+# Boxplot Visualization
+
+```{r facet box plot, message=FALSE, warning=FALSE, fig.width=8, fig.height=6, fig.align='center'}
+#make facet
+boxp <- ggplot(TextMessages_long, 
+             aes(x = Group_factor, 
+                 y = Value, 
+                 fill = Group_factor)) +
+  geom_boxplot() +
+  facet_grid(. ~ Timepoint, scales = "free") +
+  labs(x = "Group Factor", y = "Value", 
+       title = "Comparison of Baseline and Six Months Values")
+
+print(boxp)
+```
+
+\newpage
+
+# Box plot Interpretation
+
+There is an observed decrease in the median measure of central tendency which can be extrapolated to the mean and mode of the value being measured. So it means the time frame has an effect on the outcome being analyzed albeit being unable to determine statistical or practical significance. 
+
+Secondly, the change in time frame leads to decreased normality of the data as skewness is introduced into both groups at the six month mark. The direction of skewness is not relevant in this brief analysis as this can be done when performing a deeper analysis.
+
+Thirdly, outliers are introduced in the data at the six month mark. This likely indicates that the drivers of the outcome might be introducing some abnormal effects into the groups leading to extreme behaviors of the participants. In Group 1 most outliers deviate towards the low end meaning the effect drivers seem to trigger inhibitory tendencies within some members of this group while the second group seems to exhibit excitatory tendencies from the outcome drivers.
+
+Generally, the longitudinal effect of the study points towards decreased normality of the data and there might be other outcome drivers that trigger extreme behaviors in some study participants.
 
 \newpage
 
 # Barplot Visualization
-
-```{r}
-#pivot kaity way
-longtext <- gather(TextMessages,Time,Count,Baseline:Six_months, factor_key = TRUE )
-
-#pivot data Tingwei way
-TextMessages_long <- TextMessages %>%
-  pivot_longer(cols = c(Baseline, Six_months), 
-               names_to = "Timepoint", 
-               values_to = "Value")
-```
 
 
 ```{r facet bar plot, message=FALSE, warning=FALSE, fig.width=8, fig.height=6, fig.align='center'}
@@ -217,43 +247,32 @@ print(barp)
 
 # Bar plot Interpretation
 
-\textcolor{blue}{Looking at the error bar charts, the overlap between both 
+Looking at the error bar charts, the overlap between both 
 groups shows that there is a chance of no statistical significance in the 
 difference in means between both groups at baseline. If we proceed to the 
 sixth month follow up, there is confirmation that in fact both groups have a 
 decline in text messaging, more so for group 1 than group 2.
 Looking at the error bars in the histogram,
 it is clear that there could be some statistical significance in the difference
-in means between both groups at the six month follow up. }
+in means between both groups at the six month follow up.
 
-\newpage
+If we compare the box plots for both groups at baseline, their medians are 
+roughly the same though Group2's is sightly higher by a fractional margin. As 
+indicated previously, the spread of data for the second group is  much
+wider at the upper end, showing that there may be some left tail skewness in 
+their distribution. Looking at the error bar charts, the overlap between both 
+groups shows that there is a chance of no statistical significance in the 
+difference in means between both groups at baseline. If we proceed to the 
+sixth month follow up, there is confirmation that in fact both groups have a 
+decline in text messaging, more so for group 1 than group 2. Group 1 has a 
+much higher degree of outliers and flatness on the left tail. This shows that
+much of the variability in decreased text messaging for group 1 may be attributed  
+to a smaller quantity of people. This could also possibly indicate some degree
+of intervention effect in the the second group at followup since both groups 
+were fairly similar at baseline. If we look at the error bars in the histogram,
+it is clear that there could be some statistical significance in the difference
+in means between both groups at the six month follow up. 
 
-# Boxplot Visualization
-
-```{r facet box plot, message=FALSE, warning=FALSE, fig.width=8, fig.height=6, fig.align='center'}
-#make facet
-boxp <- ggplot(TextMessages_long, 
-             aes(x = Group_factor, 
-                 y = Value, 
-                 fill = Group_factor)) +
-  geom_boxplot() +
-  facet_grid(. ~ Timepoint, scales = "free") +
-  labs(x = "Group Factor", y = "Value", 
-       title = "Comparison of Baseline and Six Months Values")
-
-print(boxp)
-```
-\newpage
-
-# Box plot Interpretation
-
-There is an observed decrease in the median measure of central tendency which can be extrapolated to the mean and mode of the value being measured. So it means the time frame has an effect on the outcome being analyzed albeit being unable to determine statistical or practical significance. 
-
-Secondly, the change in time frame leads to decreased normality of the data as skewness is introduced into both groups at the six month mark. The direction of skewness is not relevant in this brief analysis as this can be done when performing a deeper analysis.
-
-Thirdly, outliers are introduced in the data at the six month mark. This likely indicates that the drivers of the outcome might be introducing some abnormal effects into the groups leading to extreme behaviors of the participants. In Group 1 most outliers deviate towards the low end meaning the effect drivers seem to trigger inhibitory tendencies within some members of this group while the second group seems to exhibit excitatory tendencies from the outcome drivers.
-
-Generally, the longitudinal effect of the study points towards decreased normality of the data and there might be other outcome drivers that trigger extreme behaviors in some study participants.
 
 \newpage
 
