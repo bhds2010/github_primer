@@ -122,6 +122,23 @@ gh pr reopen
 gh pr lock
 ```
 
+## Fix the latest PR from kaity
+
+```bash
+#https://github.com/bhds2010/github_primer.git
+#git@github.com:bhds2010/github_primer.git ssh
+#https://github.com/bhds2010/github_primer/pull/19.patch patch
+git pull origin docu_review
+
+#head branch of PR
+git checkout viz-two_barplot
+
+#merge 
+git merge docu_review
+```
+
+
+
 ## References
 
 [Github CLI Linux Install](https://github.com/cli/cli/blob/trunk/docs/install_linux.md)
