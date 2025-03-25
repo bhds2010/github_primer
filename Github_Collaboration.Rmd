@@ -181,6 +181,88 @@ Both groups showed a decline in the number of text messages sent over time. Howe
 
 \newpage
 
+# Barplot Visualization
+
+```{r}
+#pivot kaity way
+longtext <- gather(TextMessages,Time,Count,Baseline:Six_months, factor_key = TRUE )
+
+#pivot data Tingwei way
+TextMessages_long <- TextMessages %>%
+  pivot_longer(cols = c(Baseline, Six_months), 
+               names_to = "Timepoint", 
+               values_to = "Value")
+```
+
+
+```{r facet bar plot, message=FALSE, warning=FALSE, fig.width=8, fig.height=6, fig.align='center'}
+#ideal solution just need to add error bars
+barp <- ggplot(TextMessages_long, 
+               aes(x = Group_factor, 
+                   y = Value, 
+                   fill = Group_factor)) +
+  stat_summary(fun = "mean", geom = "bar") +
+  stat_summary(fun.data =  mean_cl_normal, #"mean_se" 
+               geom = "errorbar", 
+               width = .2,
+               fun.args = list(mult = 1)) +
+  facet_grid(. ~ Timepoint, scales = "free") +
+  labs(x = "Group Factor", y = "Value", 
+       title = "Comparison of Baseline and Six Months Values")
+
+print(barp)
+```
+
+\newpage
+
+# Bar plot Interpretation
+
+\textcolor{blue}{Looking at the error bar charts, the overlap between both 
+groups shows that there is a chance of no statistical significance in the 
+difference in means between both groups at baseline. If we proceed to the 
+sixth month follow up, there is confirmation that in fact both groups have a 
+decline in text messaging, more so for group 1 than group 2.
+Looking at the error bars in the histogram,
+it is clear that there could be some statistical significance in the difference
+in means between both groups at the six month follow up. }
+
+\newpage
+
+# Boxplot Visualization
+
+```{r facet box plot, message=FALSE, warning=FALSE, fig.width=8, fig.height=6, fig.align='center'}
+#make facet
+boxp <- ggplot(TextMessages_long, 
+             aes(x = Group_factor, 
+                 y = Value, 
+                 fill = Group_factor)) +
+  geom_boxplot() +
+  facet_grid(. ~ Timepoint, scales = "free") +
+  labs(x = "Group Factor", y = "Value", 
+       title = "Comparison of Baseline and Six Months Values")
+
+print(boxp)
+```
+\newpage
+
+# Box plot Interpretation
+
+There is an observed decrease in the median measure of central tendency which can be extrapolated to the mean and mode of the value being measured. So it means the time frame has an effect on the outcome being analyzed albeit being unable to determine statistical or practical significance. 
+
+Secondly, the change in time frame leads to decreased normality of the data as skewness is introduced into both groups at the six month mark. The direction of skewness is not relevant in this brief analysis as this can be done when performing a deeper analysis.
+
+Thirdly, outliers are introduced in the data at the six month mark. This likely indicates that the drivers of the outcome might be introducing some abnormal effects into the groups leading to extreme behaviors of the participants. In Group 1 most outliers deviate towards the low end meaning the effect drivers seem to trigger inhibitory tendencies within some members of this group while the second group seems to exhibit excitatory tendencies from the outcome drivers.
+
+Generally, the longitudinal effect of the study points towards decreased normality of the data and there might be other outcome drivers that trigger extreme behaviors in some study participants.
+
+\newpage
+
+# Conclusion
+
+This document provides 3 outputs as demanded. The team was able to contribute equally in the generation of this document. There is still a steep learning curve for git and github for all team members but thankfully some of us have a handle on the use of technology to get this project to its complete or mature state.
+
+\newpage
+
 # References
 
 [ggplot2 facet : split a plot into a matrix of panels ](https://www.sthda.com/english/wiki/ggplot2-facet-split-a-plot-into-a-matrix-of-panels)
