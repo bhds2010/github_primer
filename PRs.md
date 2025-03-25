@@ -75,18 +75,22 @@ git merge branch <summary-statistics> #immediately conflicts arise
 
 #the key stage here is how to fix conflicts in binary vs .txt files
 git checkout --theirs Github_Collaboration.Rmd Github_Collaboration.nb.html Github_Collaboration.pdf
+git checkout --ours Github_Collaboration.Rmd Github_Collaboration.nb.html
 
 #add modified files or accepted changes
 git add README.md Github_Collaboration.Rmd Github_Collaboration.nb.html Github_Collaboration.pdf
+git add Github_Collaboration.Rmd Github_Collaboration.nb.html
 
 #commit to merge
 git commit -m "Resolved merge conflicts in README.md, Github_Collaboration.pdf, Github_Collaboration.nb.html, and Github_Collaboration.Rmd"
+git commit -m "Resolved merge conflicts in Github_Collaboration.nb.html, and Github_Collaboration.Rmd"
 
 #push and resolve the PR from the CLI
 git push origin docu_review
 
 #finally try the merge again
 git merge branch <summary-statistics>
+git merge branch viz-two_barplot #merge: branch - not something we can merge
 
 #finally cloud merge
 gh pr merge
@@ -117,6 +121,23 @@ gh pr reopen
 #lock convo
 gh pr lock
 ```
+
+## Fix the latest PR from kaity
+
+```bash
+#https://github.com/bhds2010/github_primer.git
+#git@github.com:bhds2010/github_primer.git ssh
+#https://github.com/bhds2010/github_primer/pull/19.patch patch
+git pull origin docu_review
+
+#head branch of PR
+git checkout viz-two_barplot
+
+#merge 
+git merge docu_review
+```
+
+
 
 ## References
 
