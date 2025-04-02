@@ -23,6 +23,7 @@ header-includes:
 library(utils)
 library(pastecs)
 library(readxl)
+library(readr)
 #tidyverse
 library(dplyr)
 library(tidyr)
@@ -45,7 +46,6 @@ library(kableExtra)
 # Import Data
 
 ```{r import txtmsg data, warning=FALSE, message=FALSE}
-library(readr)
 TextMessages <- read_csv("TextMessages.csv") #1-use read_csv (parent df)
 #View(TextMessages)
 #head(TextMessages)
@@ -202,6 +202,21 @@ boxp <- ggplot(TextMessages_long,
                  fill = Group_factor)) +
   geom_boxplot() +
   facet_grid(. ~ Timepoint, scales = "free") +
+  labs(x = "Group Factor", y = "Value", 
+       title = "Comparison of Baseline and Six Months Values")
+
+print(boxp)
+```
+
+
+```{r facet box plot alt, message=FALSE, warning=FALSE, fig.width=8, fig.height=6, fig.align='center'}
+#make facet
+boxp <- ggplot(TextMessages_long, 
+             aes(x = Timepoint, 
+                 y = Value, 
+                 fill = Timepoint)) +
+  geom_boxplot() +
+  facet_grid(. ~ Group_factor, scales = "free") +
   labs(x = "Group Factor", y = "Value", 
        title = "Comparison of Baseline and Six Months Values")
 
