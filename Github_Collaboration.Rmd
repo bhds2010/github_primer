@@ -258,6 +258,24 @@ barp <- ggplot(TextMessages_long,
 print(barp)
 ```
 
+```{r facet bar plot alt, message=FALSE, warning=FALSE, fig.width=8, fig.height=6, fig.align='center'}
+#ideal solution just need to add error bars
+barp <- ggplot(TextMessages_long, 
+               aes(x = Timepoint, 
+                   y = Value, 
+                   fill = Timepoint)) +
+  stat_summary(fun = "mean", geom = "bar") +
+  stat_summary(fun.data =  mean_cl_normal, #"mean_se" 
+               geom = "errorbar", 
+               width = .2,
+               fun.args = list(mult = 1)) +
+  facet_grid(. ~ Group_factor, scales = "free") +
+  labs(x = "Group Factor", y = "Value", 
+       title = "Comparison of Baseline and Six Months Values")
+
+print(barp)
+```
+
 \newpage
 
 # Bar plot Interpretation
