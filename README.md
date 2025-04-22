@@ -127,6 +127,20 @@ rm -f .git/index.lock
 git branch -d <brachname>
 ```
 
+## 🤝🏿 Contributors
+
+<a href="https://github.com/bhds2010/randvar/graphs/contributors">
+  <img src="https://contributors-img.web.app/image?repo=bhds2010/randvar" width = 50/>
+</a>
+
+<a href="https://github.com/kaitytrinidad">
+  <img src="https://github.com/kaitytrinidad.png" width="50" />
+</a>
+
+<a href="https://github.com/naayla12">
+  <img src="https://github.com/naayla12.png" width="50" />
+</a>
+
 ## Reference
 
 [Git Creds](https://gitcreds.r-lib.org/reference/gitcreds_get.html)
