@@ -130,7 +130,7 @@ git branch -d <brachname>
 ## 🤝🏿 Contributors
 
 <a href="https://github.com/bhds2010/github_primer/graphs/contributors">
-  <img src="https://contributors-img.web.app/image?repo=bhds2010/github_primer" width = 50/>
+  <img src="https://contributors-img.web.app/image?repo=bhds2010/github_primer" width = 100/>
 </a>
 
 
